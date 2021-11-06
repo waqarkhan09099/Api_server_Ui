@@ -116,3 +116,7 @@ button:active{
     border: 2px solid green;
     background-color: white;
 }
+
+.id-class{
+    width: 10%;
+}

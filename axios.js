@@ -42,9 +42,12 @@ const getData = () => {
             console.log(res)
     
             fetchIdInfo.push(res.data)    
-            infoContainer.innerHTML=fetchIdInfo.map(e => `
+            infoContainer.innerHTML=fetchIdInfo.map((e,index) => `
             <div class="studentInfo">
-                <div class="list-header">
+                <div class="list-header id-class">
+                    <h3>${index===0?'1':index+1}</h3>
+                </div>
+                <div class="list-header id-class">
                     <h3>${e.id}</h3>
                 </div>
                 <div class="list-header">
@@ -66,8 +69,11 @@ const getData = () => {
     axios.get('https://waqarkhan-server-12982.herokuapp.com/api/student').then(res => {
         console.log(res.data)
     
-        infoContainer.innerHTML=res.data.map(e => `
+        infoContainer.innerHTML=res.data.map((e,index) => `
         <div class="studentInfo">
+            <div class="list-header id-class">
+                <h3>${index===0?'1':index+1}</h3>
+            </div>
             <div class="list-header">
                 <h3>${e.id}</h3>
             </div>
@@ -121,3 +127,9 @@ form2.addEventListener('submit', submitHandler = (e) => {
     alert(`Student ${studentId} Information Are Changed`)
 
 })
+
+function deleteData(){
+    let studentgetid=Number(document.getElementById('studentgetID').value)
+    axios.delete(`https://waqarkhan-server-12982.herokuapp.com/api/student/${studentgetid}`).catch(res=>alert(res))
+    getData()
+}
