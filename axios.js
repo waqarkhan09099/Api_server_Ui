@@ -74,7 +74,7 @@ const getData = () => {
             <div class="list-header id-class">
                 <h3>${index===0?'1':index+1}</h3>
             </div>
-            <div class="list-header">
+            <div class="list-header id-class">
                 <h3>${e.id}</h3>
             </div>
             <div class="list-header">

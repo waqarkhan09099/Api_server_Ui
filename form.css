@@ -98,6 +98,12 @@ button:active{
 
 }
 
+
+.id-class{
+    width: 10%;
+}
+
+
 .email{
     width: 35%;
 }
@@ -115,8 +121,4 @@ button:active{
 .isvalid{
     border: 2px solid green;
     background-color: white;
-}
-
-.id-class{
-    width: 10%;
 }
