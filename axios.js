@@ -26,21 +26,23 @@ form.addEventListener('submit', submitHandler = (e) => {
     .catch(error=> {
         alert(error)
     })
+    getData();
     name=''
     lastName=''
     userEmail=''
     alert("Your Information Are Submitted")
-    getData();
 })
-const fetchIdInfo = [];
-
+let fetchIdInfo=[]
 const getData = () => {
     console.log("clicked")
     let studentgetid=Number(document.getElementById('studentgetID').value)
-    if(studentgetid){
+    
+    if(!studentgetid==""){
+
+        infoContainer.innerHTML=''
         axios.get(`https://waqarkhan-server-12982.herokuapp.com/api/student/${studentgetid}`).then(res=>{
             console.log(res)
-    
+            
             fetchIdInfo.push(res.data)    
             infoContainer.innerHTML=fetchIdInfo.map((e,index) => `
             <div class="studentInfo">
@@ -62,11 +64,11 @@ const getData = () => {
             </div>
     
             `)
-        }) 
-        return
-    }
-    
-    axios.get('https://waqarkhan-server-12982.herokuapp.com/api/student').then(res => {
+        })
+
+        return 
+    }else{
+        axios.get('https://waqarkhan-server-12982.herokuapp.com/api/student').then(res => {
         console.log(res.data)
     
         infoContainer.innerHTML=res.data.map((e,index) => `
@@ -92,6 +94,10 @@ const getData = () => {
 
     }).catch(error=>alert(error))
 
+        
+    }
+    
+    
 }
 // const  getData=()=> {
 //     console.log("clicked")
@@ -127,6 +133,8 @@ form2.addEventListener('submit', submitHandler = (e) => {
     alert(`Student ${studentId} Information Are Changed`)
 
 })
+
+// Delete Function 
 
 function deleteData(){
     let studentgetid=Number(document.getElementById('studentgetID').value)
